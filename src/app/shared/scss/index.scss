@@ -5,32 +5,6 @@ html {
   font-family: "Open Sans", sans-serif;
 }
 
-h1,
-h3,
-p,
-ul {
-  margin: 0;
-}
-
-a {
-  color: #ffffff;
-
-  &:hover {
-    color: #ffffff;
-    text-decoration: none;
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
-
-nav li {
-  &::before {
-    content: none;
-  }
-}
-
 .is-clipped {
   overflow: hidden;
 }
@@ -39,10 +13,6 @@ nav li {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 56px - 72px);
-}
-
-.Main {
-  flex-grow: 1;
 }
 
 .SkipLink {
