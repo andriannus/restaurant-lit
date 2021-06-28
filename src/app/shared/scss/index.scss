@@ -5,6 +5,19 @@ html {
   font-family: "Open Sans", sans-serif;
 }
 
+a {
+  color: #ffffff;
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .is-clipped {
   overflow: hidden;
 }
