@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap");
+@import "reseter.css/css/reseter.min";
+
+html {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+a {
+  color: #ffffff;
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+nav li {
+  &::before {
+    content: none;
+  }
+}
+
+.is-clipped {
+  overflow: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 56px - 72px);
+}
+
+.Main {
+  flex-grow: 1;
+}
+
+.SkipLink {
+  background: #000000;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  left: 10px;
+  line-height: 36px;
+  padding: 0 8px;
+  position: absolute;
+  top: -40px;
+  transition: all 200ms ease-in-out;
+  z-index: 100;
+
+  &:focus {
+    top: 10px;
+    left: 10px;
+  }
+}
