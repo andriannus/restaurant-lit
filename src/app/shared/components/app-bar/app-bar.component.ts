@@ -60,6 +60,11 @@ export default class AppBarComponent extends LitElement {
     this.isBottomSheetShown = !this.isBottomSheetShown;
   }
 
+  private openPersonalWeb(): void {
+    this.toggleBottomSheet();
+    window.open("https://andriannus.id", "_blank", "noopener noreferrer");
+  }
+
   render(): TemplateResult {
     return html`
       <header class=${classMap({ AppBar: true, "is-active": this.isActive })}>
@@ -101,7 +106,9 @@ export default class AppBarComponent extends LitElement {
         <ul class="BottomDrawer">
           <li class="BottomDrawer-action">Home</li>
           <li class="BottomDrawer-action">Favorite</li>
-          <li class="BottomDrawer-action">About</li>
+          <li class="BottomDrawer-action" @click=${this.openPersonalWeb}>
+            About
+          </li>
         </ul>
       </x-bottom-sheet>
     `;
