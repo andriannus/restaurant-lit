@@ -108,6 +108,32 @@ export const appBarStyles = css`
     font-weight: 800;
   }
 
+  .BottomDrawer {
+    list-style-type: none;
+    padding: 8px 0;
+  }
+
+  .BottomDrawer-icon {
+    margin-right: 32px;
+  }
+
+  .BottomDrawer-action {
+    cursor: pointer;
+    border-radius: 4px;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 14px;
+    font-weight: 600;
+    max-height: 48px;
+    margin: 4px 8px;
+    padding: 8px;
+    transition: all 200ms ease-in-out;
+  }
+
+  .BottomDrawer-action:hover {
+    background: #fb665b;
+    color: #ffffff;
+  }
+
   @media screen and (max-width: 599px) {
     .AppBar-actions {
       display: none;

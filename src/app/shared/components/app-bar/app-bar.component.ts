@@ -4,14 +4,20 @@ import { classMap } from "lit/directives/class-map.js";
 
 import { appBarStyles } from "./app-bar.style";
 
+import "@/app/shared/components/bottom-sheet";
+
 @customElement("x-app-bar")
 export default class AppBarComponent extends LitElement {
   @property({ type: Boolean, reflect: true })
   private isActive: boolean;
 
+  @property({ type: Boolean, reflect: true })
+  private isBottomSheetShown: boolean;
+
   constructor() {
     super();
     this.isActive = false;
+    this.isBottomSheetShown = false;
     this.onPageScroll = this.onPageScroll.bind(this);
   }
 
@@ -37,7 +43,7 @@ export default class AppBarComponent extends LitElement {
     window.removeEventListener("scroll", this.onPageScroll);
   }
 
-  hasScrolled(): boolean {
+  private hasScrolled(): boolean {
     const { body, documentElement } = document;
     const isValidBody = body.scrollTop > 0;
     const isValidDocumentElement = documentElement.scrollTop > 0;
@@ -50,10 +56,14 @@ export default class AppBarComponent extends LitElement {
     this.isActive = this.hasScrolled();
   }
 
+  private toggleBottomSheet(): void {
+    this.isBottomSheetShown = !this.isBottomSheetShown;
+  }
+
   render(): TemplateResult {
     return html`
-      <header class="${classMap({ AppBar: true, "is-active": this.isActive })}">
-        <button class="AppBar-button">
+      <header class=${classMap({ AppBar: true, "is-active": this.isActive })}>
+        <button class="AppBar-button" @click=${this.toggleBottomSheet}>
           <span class="AppBar-icon">&#9776;</span>
         </button>
 
@@ -83,6 +93,17 @@ export default class AppBarComponent extends LitElement {
           </ul>
         </nav>
       </header>
+
+      <x-bottom-sheet
+        ?value=${this.isBottomSheetShown}
+        @update=${this.toggleBottomSheet}
+      >
+        <ul class="BottomDrawer">
+          <li class="BottomDrawer-action">Home</li>
+          <li class="BottomDrawer-action">Favorite</li>
+          <li class="BottomDrawer-action">About</li>
+        </ul>
+      </x-bottom-sheet>
     `;
   }
 }
