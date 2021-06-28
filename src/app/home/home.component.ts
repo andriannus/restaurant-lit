@@ -4,6 +4,7 @@ import { customElement } from "lit/decorators.js";
 import { homeStyles } from "./home.style";
 
 import "@/app/shared/components/card";
+import "@/app/shared/components/hero";
 import { RESTAURANTS } from "@/app/shared/constants/data.constant";
 
 @customElement("home-page")
@@ -14,6 +15,8 @@ export default class HomePageComponent extends LitElement {
 
   render(): TemplateResult {
     return html`
+      <x-hero></x-hero>
+
       <div id="MainContent" class="Container">
         <h2 class="Headline-2 TextAlign-center">Explore Restaurant</h2>
 
