@@ -4,7 +4,7 @@ import { customElement, property } from "lit/decorators.js";
 import { bottomSheetStyles } from "./bottom-sheet.style";
 
 @customElement("x-bottom-sheet")
-export default class AppBarComponent extends LitElement {
+export default class BotomSheetComponent extends LitElement {
   @property({ type: Boolean, reflect: true })
   private value: boolean;
 
