@@ -54,7 +54,7 @@ export default class AppBarComponent extends LitElement {
     return html`
       <header class="${classMap({ AppBar: true, "is-active": this.isActive })}">
         <button class="AppBar-button">
-          <span class="AppBar-icon">=</span>
+          <span class="AppBar-icon">&#9776;</span>
         </button>
 
         <p class="AppBar-title">We The Food</p>

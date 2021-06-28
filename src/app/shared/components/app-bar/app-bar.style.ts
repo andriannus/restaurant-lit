@@ -93,6 +93,7 @@ export const appBarStyles = css`
   }
 
   .AppBar-icon {
+    font-size: 20px;
     line-height: 36px;
   }
 
