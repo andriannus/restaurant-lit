@@ -27,19 +27,11 @@ export default class AppBarComponent extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.addScrollListener();
+    window.addEventListener("scroll", this.onPageScroll);
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    this.removeScrollListener();
-  }
-
-  private addScrollListener(): void {
-    window.addEventListener("scroll", this.onPageScroll);
-  }
-
-  private removeScrollListener(): void {
     window.removeEventListener("scroll", this.onPageScroll);
   }
 
@@ -58,11 +50,6 @@ export default class AppBarComponent extends LitElement {
 
   private toggleBottomSheet(): void {
     this.isBottomSheetShown = !this.isBottomSheetShown;
-  }
-
-  private openPersonalWeb(): void {
-    this.toggleBottomSheet();
-    window.open("https://andriannus.id", "_blank", "noopener noreferrer");
   }
 
   render(): TemplateResult {
@@ -104,10 +91,22 @@ export default class AppBarComponent extends LitElement {
         @update=${this.toggleBottomSheet}
       >
         <ul class="BottomDrawer">
-          <li class="BottomDrawer-action">Home</li>
-          <li class="BottomDrawer-action">Favorite</li>
-          <li class="BottomDrawer-action" @click=${this.openPersonalWeb}>
-            About
+          <li class="BottomDrawer-action">
+            <a>Home</a>
+          </li>
+
+          <li class="BottomDrawer-action">
+            <a>Favorite</a>
+          </li>
+
+          <li class="BottomDrawer-action">
+            <a
+              href="https://andriannus.id"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              About
+            </a>
           </li>
         </ul>
       </x-bottom-sheet>

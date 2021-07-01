@@ -57,7 +57,7 @@ export const appBarStyles = css`
     cursor: pointer;
     font-size: 14px;
     letter-spacing: 1.25px;
-    line-height: 36px;
+    line-height: 44px;
     padding: 0 8px;
     transition: all 200ms ease-in-out;
   }
@@ -77,24 +77,25 @@ export const appBarStyles = css`
     border-radius: 50%;
     color: #ffffff;
     display: none;
-    height: 36px;
+    height: 44px;
     justify-content: center;
     margin-right: 24px;
-    max-height: 36px;
-    max-width: 36px;
+    max-height: 44px;
+    max-width: 44px;
     outline: none;
     padding: 0;
     transition: all 200ms ease-in-out;
-    width: 36px;
+    width: 44px;
   }
 
+  .AppBar-button:focus,
   .AppBar-button:hover {
     background: #fb665b;
   }
 
   .AppBar-icon {
     font-size: 20px;
-    line-height: 36px;
+    line-height: 44px;
   }
 
   .AppBar-spacer {
@@ -103,9 +104,10 @@ export const appBarStyles = css`
 
   .AppBar-title {
     font-size: 20px;
+    font-weight: 800;
     line-height: 24px;
     margin-bottom: 0;
-    font-weight: 800;
+    user-select: none;
   }
 
   .BottomDrawer {
@@ -118,18 +120,23 @@ export const appBarStyles = css`
   }
 
   .BottomDrawer-action {
-    cursor: pointer;
+    margin: 4px 8px;
+  }
+
+  .BottomDrawer-action a {
     border-radius: 4px;
     color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    display: flex;
     font-size: 14px;
     font-weight: 600;
+    line-height: 20px;
     max-height: 48px;
-    margin: 4px 8px;
-    padding: 8px;
+    padding: 12px 8px;
     transition: all 200ms ease-in-out;
   }
 
-  .BottomDrawer-action:hover {
+  .BottomDrawer-action a:hover {
     background: #fb665b;
     color: #ffffff;
   }
