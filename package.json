@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@vaadin/router": "^1.7.4",
-    "lit": "*",
-    "lit-html": "*",
+    "lit": "^2.0.0-rc.2",
+    "lit-html": "^1.4.1",
     "regenerator-runtime": "^0.13.5",
     "reseter.css": "^1.2.0"
   },
