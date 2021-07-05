@@ -136,6 +136,7 @@ export const appBarStyles = css`
     transition: all 200ms ease-in-out;
   }
 
+  .BottomDrawer-action a:focus,
   .BottomDrawer-action a:hover {
     background: #fb665b;
     color: #ffffff;
