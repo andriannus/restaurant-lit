@@ -70,7 +70,7 @@ export default class AppBarComponent extends LitElement {
             </li>
 
             <li class="AppBar-action">
-              <a href="/">Favorite</a>
+              <a href="/favorite">Favorite</a>
             </li>
 
             <li class="AppBar-action">
