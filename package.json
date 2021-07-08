@@ -2,9 +2,12 @@
   "name": "restaurant-apps",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
+  "keywords": [
+    "We The Food",
+    "Food"
+  ],
   "license": "ISC",
-  "author": "your_name <your.email@domain.com>",
+  "author": "Andre Simamora <andriansimamora@gmail.com>",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
@@ -13,6 +16,7 @@
   },
   "dependencies": {
     "@vaadin/router": "^1.7.4",
+    "axios": "^0.21.1",
     "lit": "^2.0.0-rc.2",
     "lit-html": "^1.4.1",
     "regenerator-runtime": "^0.13.5",
