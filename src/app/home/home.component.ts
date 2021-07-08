@@ -1,16 +1,87 @@
 import { LitElement, html, TemplateResult, CSSResultGroup } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 
+import { Restaurant } from "./home.model";
+import { HomeService } from "./home.service";
 import { homeStyles } from "./home.style";
 
 import "@/app/shared/components/card";
 import "@/app/shared/components/hero";
-import { RESTAURANTS } from "@/app/shared/constants/data.constant";
+import "@/app/shared/components/loading";
+import { API } from "@/app/shared/constants/api.constant";
 
 @customElement("home-page")
 export default class HomePageComponent extends LitElement {
+  @property({ type: Boolean, reflect: true })
+  private isLoading: boolean;
+
+  public restaurants: Restaurant[];
+
+  private homeService: HomeService;
+
+  constructor() {
+    super();
+
+    this.homeService = new HomeService();
+    this.isLoading = false;
+    this.restaurants = [];
+  }
+
   static get styles(): CSSResultGroup {
     return homeStyles;
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    this.fetchRestaurants();
+  }
+
+  private async fetchRestaurants(): Promise<void> {
+    this.isLoading = true;
+
+    try {
+      const { data: Data } = await this.homeService.fetchRestaurants();
+      this.restaurants = Data.restaurants;
+    } catch {
+      //
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  private Restaurants(): TemplateResult {
+    if (this.isLoading) {
+      return html`
+        <x-loading></x-loading>
+      `;
+    }
+
+    return html`
+      <div class="Grids">
+        ${this.restaurants.map((restaurant) => {
+          return html`
+            <div class="Grid">
+              <x-card hover link to="/restaurant/${restaurant.id}">
+                <img
+                  src="${API.baseUrl}/images/large/${restaurant.pictureId}"
+                  alt=${restaurant.name}
+                  loading="lazy"
+                  slot="media"
+                />
+
+                <div slot="text">
+                  <h3 class="Headline-3">${restaurant.name}</h3>
+                  <p class="BodyText-2">Rating: ${restaurant.rating}</p>
+                  <p class="BodyText-1">$ • ${restaurant.city}</p>
+                  <p class="BodyText-2 Truncate">${restaurant.description}</p>
+                </div>
+              </x-card>
+            </div>
+          `;
+        })}
+      </div>
+    `;
   }
 
   render(): TemplateResult {
@@ -20,29 +91,7 @@ export default class HomePageComponent extends LitElement {
       <div id="MainContent" class="Container">
         <h2 class="Headline-2 TextAlign-center">Explore Restaurant</h2>
 
-        <div class="Grids">
-          ${RESTAURANTS.map((restaurant) => {
-            return html`
-              <div class="Grid">
-                <x-card hover link to="/">
-                  <img
-                    src=${restaurant.pictureId}
-                    alt=${restaurant.name}
-                    loading="lazy"
-                    slot="media"
-                  />
-
-                  <div slot="text">
-                    <h3 class="Headline-3">${restaurant.name}</h3>
-                    <p class="BodyText-2">Rating: ${restaurant.rating}</p>
-                    <p class="BodyText-1">$ • ${restaurant.city}</p>
-                    <p class="BodyText-2 Truncate">${restaurant.description}</p>
-                  </div>
-                </x-card>
-              </div>
-            `;
-          })}
-        </div>
+        ${this.Restaurants()}
       </div>
     `;
   }
