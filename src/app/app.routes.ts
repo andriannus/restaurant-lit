@@ -6,6 +6,7 @@ import restaurantRoutes from "@/app/restaurant/restaurant.routes";
 
 const routes: Route[] = [...homeRoutes, ...favoriteRoutes, ...restaurantRoutes];
 const outlet = document.getElementById("Outlet");
-const router = new Router(outlet, { baseUrl: "" });
+
+export const router = new Router(outlet, { baseUrl: "" });
 
 router.setRoutes(routes);
