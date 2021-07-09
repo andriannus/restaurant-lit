@@ -34,21 +34,19 @@ export const homeStyles = css`
     line-height: 22px;
   }
 
-  .Headline {
-    &-2 {
-      color: #000000;
-      font-size: 24px;
-      font-weight: 400;
-      line-height: 24px;
-      margin: 24px 0 32px;
-    }
+  .Heading-2 {
+    color: #000000;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 24px 0 32px;
+  }
 
-    &-3 {
-      color: #000000;
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 32px;
-    }
+  .Heading-3 {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 32px;
   }
 
   .TextAlign-center {
