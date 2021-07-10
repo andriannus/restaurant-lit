@@ -66,8 +66,10 @@ export default class HomePageComponent extends LitElement {
                 <img
                   src="${API.baseUrl}/images/large/${restaurant.pictureId}"
                   alt=${restaurant.name}
+                  height="auto"
                   loading="lazy"
                   slot="media"
+                  width="100%"
                 />
 
                 <div slot="text">
