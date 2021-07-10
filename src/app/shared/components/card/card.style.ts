@@ -44,9 +44,4 @@ export const cardStyles = css`
     max-height: 194px;
     overflow: hidden;
   }
-
-  .Card-media > img {
-    height: auto;
-    max-width: 100%;
-  }
 `;
