@@ -33,6 +33,11 @@ export const restaurantStyles = css`
   .Caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
+    line-height: 12px;
+  }
+
+  .Color-black {
+    color: #000000;
   }
 
   .Container {
@@ -99,6 +104,16 @@ export const restaurantStyles = css`
     height: 100%;
     margin-right: 12px;
     padding: 0 8px;
+  }
+
+  .Restaurant-review {
+    border: 1px solid #dee2ee;
+    border-radius: 4px;
+    padding: 8px;
+  }
+
+  .Restaurant-review:not(:last-child) {
+    margin-bottom: 16px;
   }
 
   .is-active {

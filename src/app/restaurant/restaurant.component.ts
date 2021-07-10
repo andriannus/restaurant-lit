@@ -1,12 +1,14 @@
 import { LitElement, html, TemplateResult, CSSResultGroup } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { nothing } from "lit-html";
 import { RouterLocation } from "@vaadin/router";
 
-import { Menu, Restaurant } from "./restaurant.model";
+import { CustomerReview, Menu, Restaurant } from "./restaurant.model";
 import { RestaurantService } from "./restaurant.service";
 import { restaurantStyles } from "./restaurant.style";
 
 import { router } from "@/app/app.routes";
+import "@/app/shared/components/card";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
 
@@ -56,6 +58,22 @@ export default class RestaurantPageComponent extends LitElement {
     } finally {
       this.isLoading = false;
     }
+  }
+
+  private Reviews(reviews: CustomerReview[]): typeof nothing | TemplateResult {
+    if (!Array.isArray(reviews) || reviews.length < 0) return nothing;
+
+    return html`
+      ${reviews.map((review: CustomerReview) => {
+        return html`
+          <div class="Restaurant-review">
+            <p class="BodyText-2">${review.name}</p>
+            <span class="Caption">${review.date}</span>
+            <p class="BodyText-2 Color-black">${review.review}</p>
+          </div>
+        `;
+      })}
+    `;
   }
 
   private Restaurant(): TemplateResult {
@@ -135,6 +153,11 @@ export default class RestaurantPageComponent extends LitElement {
             `;
           })}
         </ul>
+      </div>
+
+      <div class="Box">
+        <h3 class="Headline">Review</h3>
+        ${this.Reviews(this.restaurant.customerReviews)}
       </div>
     `;
   }
