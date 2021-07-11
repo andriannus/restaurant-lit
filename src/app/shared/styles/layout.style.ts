@@ -1,10 +1,18 @@
 import { css } from "lit";
 
 export const layoutStyles = css`
+  .AlignItems-center {
+    align-items: center;
+  }
+
   .Container {
     padding: 0 16px;
     margin: 16px auto;
     max-width: 1064px;
+  }
+
+  .Flex {
+    display: flex;
   }
 
   .Grids {
@@ -12,6 +20,10 @@ export const layoutStyles = css`
     grid-template-columns: repeat(3, calc(33.334% - 10.667px));
     column-gap: 16px;
     row-gap: 16px;
+  }
+
+  .JustifyContent-center {
+    justify-content: center;
   }
 
   @media screen and (max-width: 599px) {

@@ -14,25 +14,3 @@ html {
   flex-direction: column;
   min-height: calc(100vh - 56px - 72px);
 }
-
-.SkipLink {
-  background: #000000;
-  border-radius: 4px;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  left: 10px;
-  line-height: 36px;
-  padding: 0 8px;
-  position: absolute;
-  top: -40px;
-  transition: all 200ms ease-in-out;
-  z-index: 100;
-
-  &:focus {
-    top: 10px;
-    left: 10px;
-    outline: none;
-  }
-}

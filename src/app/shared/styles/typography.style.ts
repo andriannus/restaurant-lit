@@ -32,12 +32,26 @@ export const typographyStyles = css`
     line-height: 22px;
   }
 
+  .Heading-1 {
+    color: #000000;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 24px 0 32px;
+  }
+
   .Heading-2 {
     color: #000000;
     font-size: 24px;
     font-weight: 400;
     line-height: 24px;
     margin: 24px 0 32px;
+  }
+
+  .Caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 12px;
   }
 
   .Heading-3 {
