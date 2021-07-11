@@ -5,6 +5,10 @@ export const layoutStyles = css`
     align-items: center;
   }
 
+  .Box:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
   .Container {
     padding: 0 16px;
     margin: 16px auto;

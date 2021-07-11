@@ -32,6 +32,14 @@ export const typographyStyles = css`
     line-height: 22px;
   }
 
+  .Color-black {
+    color: #000000;
+  }
+
+  .Color-primary {
+    color: #fa4032;
+  }
+
   .Heading-1 {
     color: #000000;
     font-size: 32px;
@@ -46,6 +54,25 @@ export const typographyStyles = css`
     font-weight: 400;
     line-height: 24px;
     margin: 24px 0 32px;
+  }
+
+  .Headline {
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+
+  .Headline::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 18px;
+    border-radius: 2.5px;
+    background-color: #fa4032;
+    margin-right: 16px;
   }
 
   .Caption {

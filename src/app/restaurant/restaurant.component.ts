@@ -12,6 +12,8 @@ import "@/app/shared/components/card";
 import "@/app/shared/components/favorite-button";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
+import { layoutStyles } from "@/app/shared/styles/layout.style";
+import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("restaurant-page")
 export default class RestaurantPageComponent extends LitElement {
@@ -34,7 +36,7 @@ export default class RestaurantPageComponent extends LitElement {
   }
 
   static get styles(): CSSResultGroup {
-    return restaurantStyles;
+    return [layoutStyles, typographyStyles, restaurantStyles];
   }
 
   connectedCallback(): void {
@@ -109,7 +111,7 @@ export default class RestaurantPageComponent extends LitElement {
               </div>
 
               <div>
-                <p class="BodyText-2 is-active">Bagus</p>
+                <p class="BodyText-2 Color-primary">Bagus</p>
 
                 <p class="Caption">
                   dari ${this.restaurant.customerReviews.length} Review
