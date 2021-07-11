@@ -9,6 +9,7 @@ import { restaurantStyles } from "./restaurant.style";
 
 import { router } from "@/app/app.routes";
 import "@/app/shared/components/card";
+import "@/app/shared/components/favorite-button";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
 
@@ -52,7 +53,6 @@ export default class RestaurantPageComponent extends LitElement {
       );
 
       this.restaurant = Data.restaurant;
-      console.log(Data.restaurant);
     } catch {
       //
     } finally {
@@ -76,7 +76,7 @@ export default class RestaurantPageComponent extends LitElement {
     `;
   }
 
-  private Restaurant(): TemplateResult {
+  render(): TemplateResult {
     if (this.isLoading) {
       return html`
         <x-loading></x-loading>
@@ -84,87 +84,85 @@ export default class RestaurantPageComponent extends LitElement {
     }
 
     return html`
-      <div class="Restaurant-image">
-        <img
-          src="${API.baseUrl}/images/large/${this.restaurant.pictureId}"
-          alt=${this.restaurant.name}
-          loading="lazy"
-          slot="media"
-        />
-      </div>
+      <div id="MainContent" class="Container">
+        <div class="Restaurant-image">
+          <img
+            src="${API.baseUrl}/images/large/${this.restaurant.pictureId}"
+            alt=${this.restaurant.name}
+            loading="lazy"
+            slot="media"
+          />
+        </div>
 
-      <div class="Box">
-        <h1 class="Heading-1">${this.restaurant.name}</h1>
-        <p class="BodyText-1">$ • ${this.restaurant.city}</p>
-      </div>
+        <div class="Box">
+          <h1 class="Heading-1">${this.restaurant.name}</h1>
+          <p class="BodyText-1">$ • ${this.restaurant.city}</p>
+        </div>
 
-      <div class="Box">
-        <p class="BodyText-1">Review</p>
+        <div class="Box">
+          <p class="BodyText-1">Review</p>
 
-        <div>
-          <div class="Flex">
-            <div class="Restaurant-rating">
-              <span>${this.restaurant.rating}</span>
-            </div>
+          <div>
+            <div class="Flex">
+              <div class="Restaurant-rating">
+                <span>${this.restaurant.rating}</span>
+              </div>
 
-            <div>
-              <p class="BodyText-2 is-active">Bagus</p>
+              <div>
+                <p class="BodyText-2 is-active">Bagus</p>
 
-              <p class="Caption">
-                dari ${this.restaurant.customerReviews.length} Review
-              </p>
+                <p class="Caption">
+                  dari ${this.restaurant.customerReviews.length} Review
+                </p>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="Box">
+          <h3 class="Headline">Deskripsi</h3>
+          <p class="BodyText-2">${this.restaurant.description}</p>
+        </div>
+
+        <div class="Box">
+          <h3 class="Headline">Alamat</h3>
+
+          <p class="BodyText-2">
+            ${this.restaurant.address}, ${this.restaurant.city}
+          </p>
+        </div>
+
+        <div class="Box">
+          <h3 class="Headline">Menu Makanan</h3>
+
+          <ul class="BodyText-2">
+            ${this.restaurant.menus.foods.map((food: Menu) => {
+              return html`
+                <li>${food.name}</li>
+              `;
+            })}
+          </ul>
+        </div>
+
+        <div class="Box">
+          <h3 class="Headline">Menu Minuman</h3>
+
+          <ul class="BodyText-2">
+            ${this.restaurant.menus.drinks.map((drink: Menu) => {
+              return html`
+                <li>${drink.name}</li>
+              `;
+            })}
+          </ul>
+        </div>
+
+        <div class="Box">
+          <h3 class="Headline">Review</h3>
+          ${this.Reviews(this.restaurant.customerReviews)}
+        </div>
       </div>
 
-      <div class="Box">
-        <h3 class="Headline">Deskripsi</h3>
-        <p class="BodyText-2">${this.restaurant.description}</p>
-      </div>
-
-      <div class="Box">
-        <h3 class="Headline">Alamat</h3>
-
-        <p class="BodyText-2">
-          ${this.restaurant.address}, ${this.restaurant.city}
-        </p>
-      </div>
-
-      <div class="Box">
-        <h3 class="Headline">Menu Makanan</h3>
-
-        <ul class="BodyText-2">
-          ${this.restaurant.menus.foods.map((food: Menu) => {
-            return html`
-              <li>${food.name}</li>
-            `;
-          })}
-        </ul>
-      </div>
-
-      <div class="Box">
-        <h3 class="Headline">Menu Minuman</h3>
-
-        <ul class="BodyText-2">
-          ${this.restaurant.menus.drinks.map((drink: Menu) => {
-            return html`
-              <li>${drink.name}</li>
-            `;
-          })}
-        </ul>
-      </div>
-
-      <div class="Box">
-        <h3 class="Headline">Review</h3>
-        ${this.Reviews(this.restaurant.customerReviews)}
-      </div>
-    `;
-  }
-
-  render(): TemplateResult {
-    return html`
-      <div id="MainContent" class="Container">${this.Restaurant()}</div>
+      <x-favorite-button .restaurant=${this.restaurant}></x-favorite-button>
     `;
   }
 }
