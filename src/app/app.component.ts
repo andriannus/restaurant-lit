@@ -2,24 +2,12 @@ import { html, render, TemplateResult } from "lit-html";
 
 import "@/app/shared/components/app-bar";
 import "@/app/shared/components/footer";
-
-function goToMainContent(e: Event): void {
-  e.preventDefault();
-  const element = document.querySelector("home-page");
-  const mainContent = element?.shadowRoot?.querySelector("#MainContent");
-
-  mainContent?.scrollIntoView({
-    behavior: "smooth",
-  });
-}
+import "@/app/shared/components/skip-link";
 
 const AppComponent: TemplateResult = html`
-  <a href="#" class="SkipLink" @click=${goToMainContent}>Menuju ke konten</a>
-
+  <x-skip-link></x-skip-link>
   <x-app-bar></x-app-bar>
-
   <div id="Outlet" class="App"></div>
-
   <x-footer></x-footer>
 `;
 
