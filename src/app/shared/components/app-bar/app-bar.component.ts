@@ -5,6 +5,7 @@ import { classMap } from "lit/directives/class-map.js";
 import { appBarStyles } from "./app-bar.style";
 
 import "@/app/shared/components/bottom-sheet";
+import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("x-app-bar")
 export default class AppBarComponent extends LitElement {
@@ -22,7 +23,7 @@ export default class AppBarComponent extends LitElement {
   }
 
   static get styles(): CSSResultGroup {
-    return appBarStyles;
+    return [typographyStyles, appBarStyles];
   }
 
   connectedCallback(): void {

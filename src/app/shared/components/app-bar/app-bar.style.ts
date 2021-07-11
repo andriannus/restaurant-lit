@@ -1,25 +1,6 @@
 import { css } from "lit";
 
 export const appBarStyles = css`
-  p,
-  ul {
-    margin: 0;
-  }
-
-  a {
-    color: #ffffff;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #ffffff;
-    text-decoration: none;
-  }
-
-  a:focus {
-    outline: none;
-  }
-
   .AppBar {
     align-items: center;
     background: #fa4032;
@@ -54,6 +35,7 @@ export const appBarStyles = css`
 
   .AppBar-action > a {
     border-radius: 4px;
+    color: #ffffff;
     cursor: pointer;
     font-size: 14px;
     letter-spacing: 1.25px;

@@ -1,4 +1,4 @@
 import "regenerator-runtime";
 
 import "@/app";
-import "@/app/shared/scss/index.scss";
+import "@/app/shared/styles/index.style.scss";

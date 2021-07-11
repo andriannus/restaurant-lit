@@ -1,11 +1,21 @@
 import { css } from "lit";
 
-export const favoriteStyles = css`
+export const typographyStyles = css`
   h1,
   h2,
   h3,
-  p {
+  p,
+  ul {
     margin: 0;
+  }
+
+  a,
+  a:hover {
+    text-decoration: none;
+  }
+
+  a:focus {
+    outline: none;
   }
 
   .BodyText-1 {
@@ -20,19 +30,6 @@ export const favoriteStyles = css`
     font-size: 14px;
     letter-spacing: 0.1px;
     line-height: 22px;
-  }
-
-  .Container {
-    padding: 0 16px;
-    margin: 16px auto;
-    max-width: 1064px;
-  }
-
-  .Grids {
-    display: grid;
-    grid-template-columns: repeat(3, calc(33.334% - 10.667px));
-    column-gap: 16px;
-    row-gap: 16px;
   }
 
   .Heading-2 {
@@ -60,18 +57,5 @@ export const favoriteStyles = css`
     -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  @media screen and (max-width: 599px) {
-    .Grids {
-      grid-template-columns: 100%;
-      column-gap: 0;
-    }
-  }
-
-  @media screen and (min-width: 600px) and (max-width: 960px) {
-    .Grids {
-      grid-template-columns: repeat(2, calc(50% - 8px));
-    }
   }
 `;

@@ -3,21 +3,21 @@ import { customElement, property } from "lit/decorators.js";
 
 import { Restaurant } from "./home.model";
 import { HomeService } from "./home.service";
-import { homeStyles } from "./home.style";
 
 import "@/app/shared/components/card";
 import "@/app/shared/components/hero";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
+import { layoutStyles } from "@/app/shared/styles/layout.style";
+import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("home-page")
 export default class HomePageComponent extends LitElement {
   @property({ type: Boolean, reflect: true })
   private isLoading: boolean;
 
-  public restaurants: Restaurant[];
-
   private homeService: HomeService;
+  private restaurants: Restaurant[];
 
   constructor() {
     super();
@@ -28,7 +28,7 @@ export default class HomePageComponent extends LitElement {
   }
 
   static get styles(): CSSResultGroup {
-    return homeStyles;
+    return [layoutStyles, typographyStyles];
   }
 
   connectedCallback(): void {
@@ -92,7 +92,6 @@ export default class HomePageComponent extends LitElement {
 
       <div id="MainContent" class="Container">
         <h2 class="Heading-2 TextAlign-center">Explore Restaurant</h2>
-
         ${this.Restaurants()}
       </div>
     `;

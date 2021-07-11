@@ -4,6 +4,8 @@ import { classMap } from "lit/directives/class-map";
 
 import { cardStyles } from "./card.style";
 
+import { typographyStyles } from "@/app/shared/styles/typography.style";
+
 @customElement("x-card")
 export default class CardComponent extends LitElement {
   @property({ type: Boolean, reflect: true })
@@ -23,7 +25,7 @@ export default class CardComponent extends LitElement {
   }
 
   static get styles(): CSSResultGroup {
-    return cardStyles;
+    return [typographyStyles, cardStyles];
   }
 
   render(): TemplateResult {

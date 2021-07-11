@@ -1,12 +1,12 @@
 import { LitElement, html, TemplateResult, CSSResultGroup } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import { favoriteStyles } from "./favorite.style";
-
 import { FavoriteService } from "@/app/favorite/favorite.service";
 import { Restaurant } from "@/app/restaurant/restaurant.model";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
+import { layoutStyles } from "@/app/shared/styles/layout.style";
+import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("favorite-page")
 export default class FavoritePageComponent extends LitElement {
@@ -31,7 +31,7 @@ export default class FavoritePageComponent extends LitElement {
   }
 
   static get styles(): CSSResultGroup {
-    return favoriteStyles;
+    return [layoutStyles, typographyStyles];
   }
 
   private async fetchFavoritedRestaurants(): Promise<void> {

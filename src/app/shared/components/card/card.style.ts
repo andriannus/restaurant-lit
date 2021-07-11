@@ -1,18 +1,6 @@
 import { css } from "lit";
 
 export const cardStyles = css`
-  a {
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: none;
-  }
-
-  a:focus {
-    outline: none;
-  }
-
   .Card {
     background: #ffffff;
     border-radius: 4px;
