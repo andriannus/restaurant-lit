@@ -3,6 +3,7 @@
     "target": "ES2018",
     "module": "ESNext",
     "strict": true,
+    "outDir": "./dist",
     "jsx": "react",
     "importHelpers": true,
     "moduleResolution": "node",
