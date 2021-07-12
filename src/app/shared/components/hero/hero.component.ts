@@ -13,9 +13,12 @@ export default class HeroComponent extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <div class="Hero">
+      <picture class="Hero">
+        <source type="image/webp" srcset="hero-image.webp" />
+        <source type="image/jpeg" srcset="hero-image.jpg" />
+
         <img src=${HeroImage} alt="Hero Image" loading="lazy" />
-      </div>
+      </picture>
     `;
   }
 }
