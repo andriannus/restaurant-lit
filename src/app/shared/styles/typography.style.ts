@@ -92,6 +92,10 @@ export const typographyStyles = css`
     text-align: center;
   }
 
+  .TextAlign-right {
+    text-align: right;
+  }
+
   .Truncate {
     display: -webkit-box;
     -webkit-box-orient: vertical;

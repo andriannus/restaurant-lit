@@ -25,14 +25,4 @@ export const restaurantStyles = css`
     margin-right: 12px;
     padding: 0 8px;
   }
-
-  .Restaurant-review {
-    border: 1px solid #dee2ee;
-    border-radius: 4px;
-    padding: 8px;
-  }
-
-  .Restaurant-review:not(:last-child) {
-    margin-bottom: 16px;
-  }
 `;
