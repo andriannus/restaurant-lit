@@ -16,4 +16,16 @@ export const buttonStyles = css`
     background: #fa4032;
     color: #ffffff;
   }
+
+  .Link {
+    color: #fa4032;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+    transition: all 200ms ease-in-out;
+  }
+
+  .Link:hover {
+    color: rgba(0, 0, 0, 0.87);
+  }
 `;

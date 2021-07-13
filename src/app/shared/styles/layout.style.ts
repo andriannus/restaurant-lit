@@ -26,6 +26,10 @@ export const layoutStyles = css`
     row-gap: 16px;
   }
 
+  .JustifyContent-between {
+    justify-content: space-between;
+  }
+
   .JustifyContent-center {
     justify-content: center;
   }
