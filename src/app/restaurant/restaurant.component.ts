@@ -14,6 +14,7 @@ import "@/app/shared/components/review";
 import "@/app/shared/components/try-again";
 import { API } from "@/app/shared/constants/api.constant";
 import { TitleService } from "@/app/shared/services/title";
+import { buttonStyles } from "@/app/shared/styles/button.style";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
 import { typographyStyles } from "@/app/shared/styles/typography.style";
 
@@ -43,7 +44,7 @@ export default class RestaurantPageComponent extends LitElement {
   }
 
   static get styles(): CSSResultGroup {
-    return [layoutStyles, typographyStyles, restaurantStyles];
+    return [buttonStyles, layoutStyles, typographyStyles, restaurantStyles];
   }
 
   connectedCallback(): void {
@@ -68,6 +69,17 @@ export default class RestaurantPageComponent extends LitElement {
     } finally {
       this.isLoading = false;
     }
+  }
+
+  private goToAllReviews(e: KeyboardEvent): void {
+    e.preventDefault();
+
+    const element = document.querySelector("restaurant-page");
+    const reviewContent = element?.shadowRoot?.querySelector("#ReviewContent");
+
+    reviewContent?.scrollIntoView({
+      behavior: "smooth",
+    });
   }
 
   render(): TemplateResult {
@@ -100,9 +112,14 @@ export default class RestaurantPageComponent extends LitElement {
         </div>
 
         <div class="Box">
-          <p class="BodyText-1">Review</p>
+          <div class="AlignItems-center Flex JustifyContent-between">
+            <p class="BodyText-1">Review</p>
+            <a href="#" class="Link" @click=${this.goToAllReviews}>
+              See all reviews
+            </a>
+          </div>
 
-          <div>
+          <div class="Flex JustifyContent-between">
             <div class="Flex">
               <div class="Restaurant-rating">
                 <span>${this.restaurant.rating}</span>
@@ -120,12 +137,12 @@ export default class RestaurantPageComponent extends LitElement {
         </div>
 
         <div class="Box">
-          <h3 class="Headline">Deskripsi</h3>
+          <h3 class="Headline">Description</h3>
           <p class="BodyText-2">${this.restaurant.description}</p>
         </div>
 
         <div class="Box">
-          <h3 class="Headline">Alamat</h3>
+          <h3 class="Headline">Address</h3>
 
           <p class="BodyText-2">
             ${this.restaurant.address}, ${this.restaurant.city}
@@ -133,7 +150,7 @@ export default class RestaurantPageComponent extends LitElement {
         </div>
 
         <div class="Box">
-          <h3 class="Headline">Menu Makanan</h3>
+          <h3 class="Headline">Foods</h3>
 
           <ul class="BodyText-2">
             ${this.restaurant.menus.foods.map((food: Menu) => {
@@ -145,7 +162,7 @@ export default class RestaurantPageComponent extends LitElement {
         </div>
 
         <div class="Box">
-          <h3 class="Headline">Menu Minuman</h3>
+          <h3 class="Headline">Drinks</h3>
 
           <ul class="BodyText-2">
             ${this.restaurant.menus.drinks.map((drink: Menu) => {
@@ -156,7 +173,7 @@ export default class RestaurantPageComponent extends LitElement {
           </ul>
         </div>
 
-        <div class="Box">
+        <div id="ReviewContent" class="Box">
           <h3 class="Headline">Review</h3>
           <x-review
             restaurantId=${this.location.params.id}
