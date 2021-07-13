@@ -1,5 +1,6 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
 const { merge } = require("webpack-merge");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const { InjectManifest } = require("workbox-webpack-plugin");
@@ -17,12 +18,46 @@ module.exports = merge(common, {
           {
             loader: "babel-loader",
             options: {
-              presets: ["@babel/preset-env"],
+              presets: [
+                [
+                  "@babel/preset-env",
+                  {
+                    targets: {
+                      esmodules: true,
+                    },
+                  },
+                ],
+              ],
             },
           },
         ],
       },
     ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({ parallel: true })],
+    splitChunks: {
+      chunks: "all",
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: "~",
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -42,6 +77,8 @@ module.exports = merge(common, {
       lang: "id",
       orientation: "portrait",
       categories: ["food"],
+      inject: true,
+      ios: true,
       icons: [
         {
           src: path.resolve(
@@ -55,6 +92,7 @@ module.exports = merge(common, {
             __dirname,
             "src/app/shared/assets/icons/maskable-icon.png",
           ),
+          purpose: "maskable",
           sizes: [64, 120, 144, 152, 192, 384, 512],
         },
         {
