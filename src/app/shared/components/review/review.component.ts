@@ -82,6 +82,7 @@ export default class ReviewComponent extends LitElement {
           <input
             class="TextField"
             placeholder="Your name"
+            required
             value=${this.review}
             @input=${this.onInputName}
           />
@@ -91,6 +92,7 @@ export default class ReviewComponent extends LitElement {
           <textarea
             class="Textarea"
             placeholder="Your review"
+            required
             value=${this.review}
             @input=${this.onInputReview}
           ></textarea>
