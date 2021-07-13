@@ -15,11 +15,12 @@ export const restaurantStyles = css`
   }
 
   .Restaurant-rating {
+    align-items: center;
     background: #fa4032;
     border-radius: 8px;
     border-top-right-radius: 0;
     color: #ffffff;
-    display: inline-block;
+    display: flex;
     font-size: 20px;
     height: 100%;
     margin-right: 12px;
