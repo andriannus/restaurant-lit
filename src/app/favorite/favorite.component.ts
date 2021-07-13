@@ -4,6 +4,7 @@ import { customElement, property } from "lit/decorators.js";
 import { FavoriteService } from "@/app/favorite/favorite.service";
 import { Restaurant } from "@/app/restaurant/restaurant.model";
 import "@/app/shared/components/loading";
+import "@/app/shared/components/try-again";
 import { API } from "@/app/shared/constants/api.constant";
 import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
@@ -11,6 +12,9 @@ import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("favorite-page")
 export default class FavoritePageComponent extends LitElement {
+  @property({ type: Boolean, reflect: true })
+  private isError: boolean;
+
   @property({ type: Boolean, reflect: true })
   private isLoading: boolean;
 
@@ -21,6 +25,7 @@ export default class FavoritePageComponent extends LitElement {
   constructor() {
     super();
     this.favoriteService = new FavoriteService();
+    this.isError = false;
     this.isLoading = false;
     this.restaurants = [];
     this.titleService = new TitleService();
@@ -38,12 +43,13 @@ export default class FavoritePageComponent extends LitElement {
 
   private async fetchFavoritedRestaurants(): Promise<void> {
     this.isLoading = true;
+    this.isError = false;
 
     try {
       const restaurants = (await this.favoriteService.getAll()) as Restaurant[];
       this.restaurants = restaurants;
-    } catch (error) {
-      console.error(error);
+    } catch {
+      this.isError = true;
     } finally {
       this.isLoading = false;
     }
@@ -53,6 +59,12 @@ export default class FavoritePageComponent extends LitElement {
     if (this.isLoading) {
       return html`
         <x-loading></x-loading>
+      `;
+    }
+
+    if (this.isError) {
+      return html`
+        <x-try-again @refresh=${this.fetchFavoritedRestaurants}></x-try-again>
       `;
     }
 

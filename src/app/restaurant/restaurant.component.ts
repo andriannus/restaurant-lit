@@ -11,6 +11,7 @@ import { router } from "@/app/app.routes";
 import "@/app/shared/components/card";
 import "@/app/shared/components/favorite-button";
 import "@/app/shared/components/loading";
+import "@/app/shared/components/try-again";
 import { API } from "@/app/shared/constants/api.constant";
 import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
@@ -18,6 +19,9 @@ import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("restaurant-page")
 export default class RestaurantPageComponent extends LitElement {
+  @property({ type: Boolean, reflect: true })
+  private isError: boolean;
+
   @property({ type: Boolean, reflect: true })
   private isLoading: boolean;
 
@@ -30,6 +34,7 @@ export default class RestaurantPageComponent extends LitElement {
 
   constructor() {
     super();
+    this.isError = false;
     this.isLoading = false;
     this.location = router.location;
     this.restaurant = {} as Restaurant;
@@ -48,6 +53,7 @@ export default class RestaurantPageComponent extends LitElement {
 
   private async fetchRestaurant(): Promise<void> {
     this.isLoading = true;
+    this.isError = false;
 
     try {
       const { id } = this.location.params;
@@ -58,7 +64,7 @@ export default class RestaurantPageComponent extends LitElement {
       this.titleService.setTitle(`${Data.restaurant.name} - We The Food`);
       this.restaurant = Data.restaurant;
     } catch {
-      //
+      this.isError = true;
     } finally {
       this.isLoading = false;
     }
@@ -84,6 +90,12 @@ export default class RestaurantPageComponent extends LitElement {
     if (this.isLoading) {
       return html`
         <x-loading></x-loading>
+      `;
+    }
+
+    if (this.isError) {
+      return html`
+        <x-try-again @refresh=${this.fetchRestaurant}></x-try-again>
       `;
     }
 

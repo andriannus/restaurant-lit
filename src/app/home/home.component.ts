@@ -7,6 +7,7 @@ import { HomeService } from "./home.service";
 import "@/app/shared/components/card";
 import "@/app/shared/components/hero";
 import "@/app/shared/components/loading";
+import "@/app/shared/components/try-again";
 import { API } from "@/app/shared/constants/api.constant";
 import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
@@ -14,6 +15,9 @@ import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("home-page")
 export default class HomePageComponent extends LitElement {
+  @property({ type: Boolean, reflect: true })
+  private isError: boolean;
+
   @property({ type: Boolean, reflect: true })
   private isLoading: boolean;
 
@@ -24,6 +28,7 @@ export default class HomePageComponent extends LitElement {
   constructor() {
     super();
     this.homeService = new HomeService();
+    this.isError = false;
     this.isLoading = false;
     this.restaurants = [];
     this.titleService = new TitleService();
@@ -41,12 +46,13 @@ export default class HomePageComponent extends LitElement {
 
   private async fetchRestaurants(): Promise<void> {
     this.isLoading = true;
+    this.isError = false;
 
     try {
       const { data: Data } = await this.homeService.fetchRestaurants();
       this.restaurants = Data.restaurants;
     } catch {
-      //
+      this.isError = true;
     } finally {
       this.isLoading = false;
     }
@@ -56,6 +62,12 @@ export default class HomePageComponent extends LitElement {
     if (this.isLoading) {
       return html`
         <x-loading></x-loading>
+      `;
+    }
+
+    if (this.isError) {
+      return html`
+        <x-try-again @refresh=${this.fetchRestaurants}></x-try-again>
       `;
     }
 
