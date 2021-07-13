@@ -54,6 +54,14 @@ export default class FavoritePageComponent extends LitElement {
       `;
     }
 
+    if (this.restaurants.length < 1) {
+      return html`
+        <p class="BodyText-1 TextAlign-center">
+          You don't have a favorite restaurant yet.
+        </p>
+      `;
+    }
+
     return html`
       <div class="Grids">
         ${this.restaurants.map((restaurant) => {
