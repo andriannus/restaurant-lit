@@ -23,7 +23,6 @@ export default class SkipLinkComponent extends LitElement {
 
     const element = document.querySelector("home-page");
     const mainContent = element?.shadowRoot?.querySelector("#MainContent");
-    console.log(mainContent);
 
     mainContent?.scrollIntoView({
       behavior: "smooth",
