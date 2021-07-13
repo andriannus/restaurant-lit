@@ -21,7 +21,6 @@ export default class FavoriteButtonComponent extends LitElement {
 
   constructor() {
     super();
-
     this.favoriteService = new FavoriteService();
     this.hasFavorited = false;
     this.restaurant = {} as Restaurant;

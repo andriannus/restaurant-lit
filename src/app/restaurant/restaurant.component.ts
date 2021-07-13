@@ -28,7 +28,6 @@ export default class RestaurantPageComponent extends LitElement {
 
   constructor() {
     super();
-
     this.isLoading = false;
     this.location = router.location;
     this.restaurant = {} as Restaurant;
@@ -41,7 +40,6 @@ export default class RestaurantPageComponent extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-
     this.fetchRestaurant();
   }
 
@@ -66,7 +64,7 @@ export default class RestaurantPageComponent extends LitElement {
     if (!Array.isArray(reviews) || reviews.length < 0) return nothing;
 
     return html`
-      ${reviews.map((review: CustomerReview) => {
+      ${reviews.map<TemplateResult>((review: CustomerReview) => {
         return html`
           <div class="Restaurant-review">
             <p class="BodyText-2">${review.name}</p>

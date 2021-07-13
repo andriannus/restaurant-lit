@@ -13,7 +13,7 @@ export default class LoadingComponent extends LitElement {
     return html`
       <div class="Loading">
         <div class="LoadingSpinner">
-          ${Array.from({ length: 6 }).map(() => {
+          ${Array.from({ length: 6 }).map<TemplateResult>(() => {
             return html`
               <div class="LoadingSpinner-dot"></div>
             `;

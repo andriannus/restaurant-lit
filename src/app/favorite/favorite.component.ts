@@ -18,7 +18,6 @@ export default class FavoritePageComponent extends LitElement {
 
   constructor() {
     super();
-
     this.favoriteService = new FavoriteService();
     this.isLoading = false;
     this.restaurants = [];
@@ -26,7 +25,6 @@ export default class FavoritePageComponent extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
-
     this.fetchFavoritedRestaurants();
   }
 
@@ -64,7 +62,7 @@ export default class FavoritePageComponent extends LitElement {
 
     return html`
       <div class="Grids">
-        ${this.restaurants.map((restaurant) => {
+        ${this.restaurants.map<TemplateResult>((restaurant: Restaurant) => {
           return html`
             <div class="Grid">
               <x-card hover link to="/restaurant/${restaurant.id}">
