@@ -47,6 +47,21 @@ export default class RestaurantPageComponent extends LitElement {
     return [buttonStyles, layoutStyles, typographyStyles, restaurantStyles];
   }
 
+  private get reviewInWord(): string {
+    const { rating } = this.restaurant;
+
+    switch (true) {
+      case rating >= 4:
+        return "Good";
+      case rating >= 3 && rating < 4:
+        return "Okay";
+      case rating >= 2 && rating < 3:
+        return "Bad";
+      default:
+        return "Terrible";
+    }
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
     this.fetchRestaurant();
@@ -114,6 +129,7 @@ export default class RestaurantPageComponent extends LitElement {
         <div class="Box">
           <div class="AlignItems-center Flex JustifyContent-between">
             <p class="BodyText-1">Review</p>
+
             <a href="#" class="Link" @click=${this.goToAllReviews}>
               See all reviews
             </a>
@@ -126,7 +142,7 @@ export default class RestaurantPageComponent extends LitElement {
               </div>
 
               <div>
-                <p class="BodyText-2 Color-primary">Bagus</p>
+                <p class="BodyText-2 Color-primary">${this.reviewInWord}</p>
 
                 <p class="Caption">
                   dari ${this.restaurant.customerReviews.length} Review
@@ -153,7 +169,7 @@ export default class RestaurantPageComponent extends LitElement {
           <h3 class="Headline">Foods</h3>
 
           <ul class="BodyText-2">
-            ${this.restaurant.menus.foods.map((food: Menu) => {
+            ${this.restaurant.menus.foods.map<TemplateResult>((food: Menu) => {
               return html`
                 <li>${food.name}</li>
               `;
@@ -165,16 +181,19 @@ export default class RestaurantPageComponent extends LitElement {
           <h3 class="Headline">Drinks</h3>
 
           <ul class="BodyText-2">
-            ${this.restaurant.menus.drinks.map((drink: Menu) => {
-              return html`
-                <li>${drink.name}</li>
-              `;
-            })}
+            ${this.restaurant.menus.drinks.map<TemplateResult>(
+              (drink: Menu) => {
+                return html`
+                  <li>${drink.name}</li>
+                `;
+              },
+            )}
           </ul>
         </div>
 
         <div id="ReviewContent" class="Box">
           <h3 class="Headline">Review</h3>
+
           <x-review
             restaurantId=${this.location.params.id}
             .reviews=${this.restaurant.customerReviews}
