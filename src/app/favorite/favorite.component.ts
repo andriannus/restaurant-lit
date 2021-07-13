@@ -5,6 +5,7 @@ import { FavoriteService } from "@/app/favorite/favorite.service";
 import { Restaurant } from "@/app/restaurant/restaurant.model";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
+import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
 import { typographyStyles } from "@/app/shared/styles/typography.style";
 
@@ -15,16 +16,19 @@ export default class FavoritePageComponent extends LitElement {
 
   private favoriteService: FavoriteService;
   private restaurants: Restaurant[];
+  private titleService: TitleService;
 
   constructor() {
     super();
     this.favoriteService = new FavoriteService();
     this.isLoading = false;
     this.restaurants = [];
+    this.titleService = new TitleService();
   }
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.titleService.setTitle("Favorite - We The Food");
     this.fetchFavoritedRestaurants();
   }
 

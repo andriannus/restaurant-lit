@@ -12,6 +12,7 @@ import "@/app/shared/components/card";
 import "@/app/shared/components/favorite-button";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
+import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
 import { typographyStyles } from "@/app/shared/styles/typography.style";
 
@@ -25,6 +26,7 @@ export default class RestaurantPageComponent extends LitElement {
 
   private restaurant: Restaurant;
   private restaurantService: RestaurantService;
+  private titleService: TitleService;
 
   constructor() {
     super();
@@ -32,6 +34,7 @@ export default class RestaurantPageComponent extends LitElement {
     this.location = router.location;
     this.restaurant = {} as Restaurant;
     this.restaurantService = new RestaurantService();
+    this.titleService = new TitleService();
   }
 
   static get styles(): CSSResultGroup {
@@ -52,6 +55,7 @@ export default class RestaurantPageComponent extends LitElement {
         id as string,
       );
 
+      this.titleService.setTitle(`${Data.restaurant.name} - We The Food`);
       this.restaurant = Data.restaurant;
     } catch {
       //

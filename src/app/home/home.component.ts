@@ -8,6 +8,7 @@ import "@/app/shared/components/card";
 import "@/app/shared/components/hero";
 import "@/app/shared/components/loading";
 import { API } from "@/app/shared/constants/api.constant";
+import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
 import { typographyStyles } from "@/app/shared/styles/typography.style";
 
@@ -18,12 +19,14 @@ export default class HomePageComponent extends LitElement {
 
   private homeService: HomeService;
   private restaurants: Restaurant[];
+  private titleService: TitleService;
 
   constructor() {
     super();
     this.homeService = new HomeService();
     this.isLoading = false;
     this.restaurants = [];
+    this.titleService = new TitleService();
   }
 
   static get styles(): CSSResultGroup {
@@ -32,6 +35,7 @@ export default class HomePageComponent extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.titleService.setTitle("Explore Restaurant - We The Food");
     this.fetchRestaurants();
   }
 
