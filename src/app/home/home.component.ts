@@ -78,7 +78,7 @@ export default class HomePageComponent extends LitElement {
             <div class="Grid">
               <x-card hover link to="/restaurant/${restaurant.id}">
                 <img
-                  src="${API.baseUrl}/images/large/${restaurant.pictureId}"
+                  src="${API.baseUrl}/images/small/${restaurant.pictureId}"
                   alt=${restaurant.name}
                   height="auto"
                   loading="lazy"

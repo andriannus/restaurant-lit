@@ -114,7 +114,7 @@ export default class RestaurantPageComponent extends LitElement {
       <div id="MainContent" class="Container">
         <div class="Restaurant-image">
           <img
-            src="${API.baseUrl}/images/large/${this.restaurant.pictureId}"
+            src="${API.baseUrl}/images/medium/${this.restaurant.pictureId}"
             alt=${this.restaurant.name}
             loading="lazy"
             slot="media"
