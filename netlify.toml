@@ -1,0 +1,13 @@
+[[redirects]]
+from = "/*"
+status = 200
+to = "/index.html"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+cache-control = '''
+  public,
+  must-revalidate,
+  max-age=2592000'''
