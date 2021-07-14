@@ -1,7 +1,8 @@
 import { LitElement, html, TemplateResult, CSSResultGroup } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { nothing } from "lit-html";
+import { nothing } from "lit/html";
 
+import { ReviewData } from "./review.model";
 import { reviewStyles } from "./review.style";
 
 import { CustomerReview } from "@/app/restaurant/restaurant.model";
@@ -10,7 +11,6 @@ import "@/app/shared/components/loading";
 import { buttonStyles } from "@/app/shared/styles/button.style";
 import { spacingStyles } from "@/app/shared/styles/spacing.style";
 import { typographyStyles } from "@/app/shared/styles/typography.style";
-import { ReviewData } from "./review.model";
 
 @customElement("x-review")
 export default class ReviewComponent extends LitElement {

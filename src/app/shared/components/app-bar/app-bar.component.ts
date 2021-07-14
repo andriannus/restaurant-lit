@@ -1,6 +1,6 @@
 import { CSSResultGroup, html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
+import { classMap } from "lit/directives/class-map";
 
 import { appBarStyles } from "./app-bar.style";
 

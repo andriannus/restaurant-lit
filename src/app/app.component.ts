@@ -1,4 +1,4 @@
-import { html, render, TemplateResult } from "lit-html";
+import { html, render, TemplateResult } from "lit/html";
 
 import "@/app/shared/components/app-bar";
 import "@/app/shared/components/footer";

@@ -1,7 +1,7 @@
 import { CSSResultGroup, html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map";
-import { nothing } from "lit-html";
+import { nothing } from "lit/html";
 
 import { favoriteButtonStyles } from "./favorite-button.style";
 
