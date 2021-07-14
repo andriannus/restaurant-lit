@@ -67,6 +67,7 @@ module.exports = {
       favicon: path.resolve(__dirname, "public/favicon.ico"),
       filename: "index.html",
       scriptLoading: "defer",
+      inject: "body",
     }),
     new ImageminWebpWebpackPlugin({
       config: [
