@@ -1,3 +1,4 @@
+const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
 const path = require("path");
@@ -65,6 +66,7 @@ module.exports = {
       template: path.resolve(__dirname, "public/index.html"),
       favicon: path.resolve(__dirname, "public/favicon.ico"),
       filename: "index.html",
+      scriptLoading: "defer",
     }),
     new ImageminWebpWebpackPlugin({
       config: [
@@ -76,6 +78,10 @@ module.exports = {
         },
       ],
       overrideExtension: true,
+    }),
+    new PreloadWebpackPlugin({
+      rel: "preload",
+      include: "all",
     }),
   ],
 };
