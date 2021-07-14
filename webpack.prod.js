@@ -1,4 +1,5 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
@@ -63,6 +64,10 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin({ analyzerMode: "static" }),
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+      threshold: 8192,
+    }),
     new InjectManifest({
       swSrc: "./src/service-worker.js",
       swDest: "sw.js",
