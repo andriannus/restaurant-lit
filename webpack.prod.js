@@ -6,6 +6,7 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { merge } = require("webpack-merge");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const { InjectManifest } = require("workbox-webpack-plugin");
+const zlip = require("zlib");
 
 const common = require("./webpack.common");
 
@@ -65,8 +66,15 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin({ analyzerMode: "static" }),
     new CompressionPlugin({
-      test: /\.js(\?.*)?$/i,
-      threshold: 8192,
+      filename: "[path][base].br",
+      algorithm: "brotliCompress",
+      test: /\.(js|css|html)$/,
+      compressionOptions: {
+        params: {
+          [zlip.constants.BROTLI_PARAM_QUALITY]: 11,
+        },
+      },
+      threshold: 10240,
     }),
     new InjectManifest({
       swSrc: "./src/service-worker.js",
