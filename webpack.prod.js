@@ -1,6 +1,7 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const path = require("path");
+const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { merge } = require("webpack-merge");
@@ -80,6 +81,7 @@ module.exports = merge(common, {
       swSrc: "./src/service-worker.js",
       swDest: "sw.js",
     }),
+    new RobotstxtPlugin(),
     new WebpackPwaManifest({
       name: "We The Food",
       short_name: "WTF",
