@@ -21,7 +21,7 @@ export const reviewStyles = css`
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
     line-height: 22px;
-    padding: 8px 12px;
+    padding: 10px 12px;
     transition: all 200ms ease-in-out;
     width: 100%;
   }

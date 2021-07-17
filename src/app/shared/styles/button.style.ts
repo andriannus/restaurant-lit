@@ -22,6 +22,8 @@ export const buttonStyles = css`
     cursor: pointer;
     font-size: 14px;
     letter-spacing: 0.1px;
+    line-height: 20px;
+    padding: 12px;
     transition: all 200ms ease-in-out;
   }
 
