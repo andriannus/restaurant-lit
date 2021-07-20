@@ -10,7 +10,7 @@ import { Restaurant } from "@/app/restaurant/restaurant.model";
 import { isEmpty } from "@/app/shared/utils/operation";
 
 @customElement("x-favorite-button")
-export default class FavoriteButtonComponent extends LitElement {
+export class FavoriteButtonComponent extends LitElement {
   @property({ type: Boolean, reflect: true })
   private hasFavorited: boolean;
 
