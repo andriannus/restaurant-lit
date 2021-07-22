@@ -1,0 +1,5 @@
+{
+  "baseUrl": "http://localhost:8081",
+  "pluginsFile": "tests/e2e/plugins/index.js",
+  "includeShadowDom": true
+}
