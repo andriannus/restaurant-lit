@@ -34,6 +34,12 @@ export class FavoriteButtonComponent extends LitElement {
     return favoriteButtonStyles;
   }
 
+  private get ariaLabel(): string {
+    return this.hasFavorited
+      ? "Unfavorite this restaurant"
+      : "Favorite this restaurant";
+  }
+
   private async handleFavoriteStatus(): Promise<void> {
     try {
       const restaurant = await this.favoriteService.get(this.restaurant.id);
@@ -66,6 +72,7 @@ export class FavoriteButtonComponent extends LitElement {
 
     return html`
       <button
+        aria-label=${this.ariaLabel}
         class=${classMap({
           FavoriteButton: true,
           "is-active": this.hasFavorited,
