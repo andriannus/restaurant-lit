@@ -32,14 +32,14 @@ describe("Favorite Button Component", () => {
   });
 
   describe("when favorite a restaurant", () => {
-    it("should show the favorite button when the movie has not been favorited before", () => {
+    it("should show the favorite button when the restaurant has not been favorited before", () => {
       const mockSelector = '[aria-label="Favorite this restaurant"]';
       const mockButton = component.shadowRoot!.querySelector(mockSelector)!;
 
       expect(mockButton).to.be.ok;
     });
 
-    it("should not show the unfavorite button when the movie has not been favorited before", async () => {
+    it("should not show the unfavorite button when the restaurant has not been favorited before", async () => {
       const mockSelector = '[aria-label="Unfavorite this restaurant"]';
       const mockButton = component.shadowRoot!.querySelector(mockSelector)!;
 
@@ -64,7 +64,7 @@ describe("Favorite Button Component", () => {
   });
 
   describe("when unfavorite a restaurant", () => {
-    it("should display unfavorite button when the movie has been favorited", async () => {
+    it("should display unfavorite button when the restaurant has been favorited", async () => {
       const button = component.shadowRoot!.querySelector("button")!;
       button.click();
 
