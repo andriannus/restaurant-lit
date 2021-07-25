@@ -39,6 +39,12 @@ export default class FavoritePageComponent extends LitElement {
     return [layoutStyles, typographyStyles];
   }
 
+  private async loadCardComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "card-component" */ "@/app/shared/components/card"
+    );
+  }
+
   private async loadLoadingComponent(): Promise<void> {
     await import(
       /* webpackChunkName: "landing-component" */ "@/app/shared/components/loading"
@@ -89,6 +95,8 @@ export default class FavoritePageComponent extends LitElement {
         </p>
       `;
     }
+
+    this.loadCardComponent();
 
     return html`
       <div class="Grids">
