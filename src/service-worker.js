@@ -1,15 +1,37 @@
+import { CacheableResponsePlugin } from "workbox-cacheable-response";
+import { ExpirationPlugin } from "workbox-expiration";
+import { precacheAndRoute } from "workbox-precaching";
+import { registerRoute } from "workbox-routing";
+import { StaleWhileRevalidate, CacheFirst } from "workbox-strategies";
+
 import { API } from "@/app/shared/constants/api.constant";
 
-importScripts(
-  "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js",
+precacheAndRoute(self.__WB_MANIFEST);
+
+registerRoute(
+  new RegExp(`${API.baseUrl}/`),
+  new StaleWhileRevalidate({
+    cacheName: "dicoding",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+    ],
+  }),
 );
 
-workbox.core.setCacheNameDetails({ prefix: "wethefood" });
-
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
-
-workbox.routing.registerNavigationRoute("/index.html");
-workbox.routing.registerRoute(
-  new RegExp(`${API.baseUrl}/`),
-  workbox.strategies.staleWhileRevalidate(),
+registerRoute(
+  ({ request }) => request.destination === "image",
+  new CacheFirst({
+    cacheName: "images",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days
+      }),
+    ],
+  }),
 );
