@@ -3,8 +3,6 @@ import { customElement, property } from "lit/decorators.js";
 
 import { FavoriteService } from "@/app/favorite/favorite.service";
 import { Restaurant } from "@/app/restaurant/restaurant.model";
-import "@/app/shared/components/loading";
-import "@/app/shared/components/try-again";
 import { API } from "@/app/shared/constants/api.constant";
 import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
@@ -41,6 +39,18 @@ export default class FavoritePageComponent extends LitElement {
     return [layoutStyles, typographyStyles];
   }
 
+  private async loadLoadingComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "landing-component" */ "@/app/shared/components/loading"
+    );
+  }
+
+  private async loadTryAgainComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "try-again-component" */ "@/app/shared/components/try-again"
+    );
+  }
+
   private async fetchFavoritedRestaurants(): Promise<void> {
     this.isLoading = true;
     this.isError = false;
@@ -57,12 +67,16 @@ export default class FavoritePageComponent extends LitElement {
 
   private Restaurants(): TemplateResult {
     if (this.isLoading) {
+      this.loadLoadingComponent();
+
       return html`
         <x-loading></x-loading>
       `;
     }
 
     if (this.isError) {
+      this.loadTryAgainComponent();
+
       return html`
         <x-try-again @refresh=${this.fetchFavoritedRestaurants}></x-try-again>
       `;

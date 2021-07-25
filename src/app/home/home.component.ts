@@ -4,10 +4,6 @@ import { customElement, property } from "lit/decorators.js";
 import { Restaurant } from "./home.model";
 import { HomeService } from "./home.service";
 
-import "@/app/shared/components/card";
-import "@/app/shared/components/hero";
-import "@/app/shared/components/loading";
-import "@/app/shared/components/try-again";
 import { API } from "@/app/shared/constants/api.constant";
 import { TitleService } from "@/app/shared/services/title";
 import { layoutStyles } from "@/app/shared/styles/layout.style";
@@ -44,6 +40,30 @@ export default class HomePageComponent extends LitElement {
     this.fetchRestaurants();
   }
 
+  private async loadCardComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "card-component" */ "@/app/shared/components/card"
+    );
+  }
+
+  private async loadHeroComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "hero-component" */ "@/app/shared/components/hero"
+    );
+  }
+
+  private async loadLoadingComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "loading-component" */ "@/app/shared/components/loading"
+    );
+  }
+
+  private async loadTryAgainComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "try-again-component" */ "@/app/shared/components/try-again"
+    );
+  }
+
   private async fetchRestaurants(): Promise<void> {
     this.isLoading = true;
     this.isError = false;
@@ -60,16 +80,22 @@ export default class HomePageComponent extends LitElement {
 
   private Restaurants(): TemplateResult {
     if (this.isLoading) {
+      this.loadLoadingComponent();
+
       return html`
         <x-loading></x-loading>
       `;
     }
 
     if (this.isError) {
+      this.loadTryAgainComponent();
+
       return html`
         <x-try-again @refresh=${this.fetchRestaurants}></x-try-again>
       `;
     }
+
+    this.loadCardComponent();
 
     return html`
       <div class="Grids">
@@ -101,6 +127,8 @@ export default class HomePageComponent extends LitElement {
   }
 
   render(): TemplateResult {
+    this.loadHeroComponent();
+
     return html`
       <x-hero></x-hero>
 

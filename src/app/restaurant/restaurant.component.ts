@@ -7,11 +7,6 @@ import { RestaurantService } from "./restaurant.service";
 import { restaurantStyles } from "./restaurant.style";
 
 import { router } from "@/app/app.routes";
-import "@/app/shared/components/card";
-import "@/app/shared/components/favorite-button";
-import "@/app/shared/components/loading";
-import "@/app/shared/components/review";
-import "@/app/shared/components/try-again";
 import { API } from "@/app/shared/constants/api.constant";
 import { TitleService } from "@/app/shared/services/title";
 import { buttonStyles } from "@/app/shared/styles/button.style";
@@ -67,6 +62,34 @@ export default class RestaurantPageComponent extends LitElement {
     this.fetchRestaurant();
   }
 
+  private async loadCardComponent(): Promise<void> {
+    await import(/* webpackChunkName: "card" */ "@/app/shared/components/card");
+  }
+
+  private async loadFavoriteButtonComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "favorite-button" */ "@/app/shared/components/favorite-button"
+    );
+  }
+
+  private async loadLoadingComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "loading" */ "@/app/shared/components/loading"
+    );
+  }
+
+  private async loadReviewComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "review" */ "@/app/shared/components/review"
+    );
+  }
+
+  private async loadTryAgainComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "try-again" */ "@/app/shared/components/try-again"
+    );
+  }
+
   private async fetchRestaurant(): Promise<void> {
     this.isLoading = true;
     this.isError = false;
@@ -99,16 +122,24 @@ export default class RestaurantPageComponent extends LitElement {
 
   render(): TemplateResult {
     if (this.isLoading) {
+      this.loadLoadingComponent();
+
       return html`
         <x-loading></x-loading>
       `;
     }
 
     if (this.isError) {
+      this.loadTryAgainComponent();
+
       return html`
         <x-try-again @refresh=${this.fetchRestaurant}></x-try-again>
       `;
     }
+
+    this.loadCardComponent();
+    this.loadFavoriteButtonComponent();
+    this.loadReviewComponent();
 
     return html`
       <div id="MainContent" class="Container">

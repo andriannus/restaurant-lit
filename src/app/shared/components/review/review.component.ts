@@ -7,7 +7,6 @@ import { reviewStyles } from "./review.style";
 
 import { CustomerReview } from "@/app/restaurant/restaurant.model";
 import { RestaurantService } from "@/app/restaurant/restaurant.service";
-import "@/app/shared/components/loading";
 import { buttonStyles } from "@/app/shared/styles/button.style";
 import { spacingStyles } from "@/app/shared/styles/spacing.style";
 import { typographyStyles } from "@/app/shared/styles/typography.style";
@@ -45,6 +44,12 @@ export default class ReviewComponent extends LitElement {
     return [buttonStyles, spacingStyles, typographyStyles, reviewStyles];
   }
 
+  private async loadLoadingComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "loading" */ "@/app/shared/components/loading"
+    );
+  }
+
   private onInputName(e: KeyboardEvent): void {
     this.name = (e.target as HTMLInputElement).value;
   }
@@ -73,6 +78,22 @@ export default class ReviewComponent extends LitElement {
     }
   }
 
+  private SubmitButton() {
+    if (this.isLoading) {
+      this.loadLoadingComponent();
+
+      return html`
+        <x-loading></x-loading>
+      `;
+    }
+
+    return html`
+      <div class="TextAlign-right">
+        <button class="Button" type="submit">Submit</button>
+      </div>
+    `;
+  }
+
   private ReviewForm(): TemplateResult {
     return html`
       <form @submit=${this.submitReview}>
@@ -98,15 +119,7 @@ export default class ReviewComponent extends LitElement {
           ></textarea>
         </div>
 
-        <div class="TextAlign-right">
-          ${this.isLoading
-            ? html`
-                <x-loading></x-loading>
-              `
-            : html`
-                <button class="Button" type="submit">Submit</button>
-              `}
-        </div>
+        ${this.SubmitButton()}
       </form>
     `;
   }

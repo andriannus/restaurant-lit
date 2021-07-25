@@ -4,7 +4,6 @@ import { classMap } from "lit/directives/class-map";
 
 import { appBarStyles } from "./app-bar.style";
 
-import "@/app/shared/components/bottom-sheet";
 import { typographyStyles } from "@/app/shared/styles/typography.style";
 
 @customElement("x-app-bar")
@@ -36,6 +35,12 @@ export default class AppBarComponent extends LitElement {
     window.removeEventListener("scroll", this.onPageScroll);
   }
 
+  private async loadBottomSheetComponent(): Promise<void> {
+    await import(
+      /* webpackChunkName: "bottom-sheet" */ "@/app/shared/components/bottom-sheet"
+    );
+  }
+
   private hasScrolled(): boolean {
     const { body, documentElement } = document;
     const isValidBody = body.scrollTop > 0;
@@ -54,6 +59,8 @@ export default class AppBarComponent extends LitElement {
   }
 
   render(): TemplateResult {
+    this.loadBottomSheetComponent();
+
     return html`
       <header class=${classMap({ AppBar: true, "is-active": this.isActive })}>
         <button class="AppBar-button" @click=${this.toggleBottomSheet}>
