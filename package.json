@@ -10,8 +10,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
+    "cy:open": "cypress open",
     "dev": "webpack-dev-server --config webpack.dev.js",
-    "test:e2e": "cypress open",
+    "test:e2e": "start-server-and-test dev http://localhost:8081 cy:open",
     "test:unit": "karma start"
   },
   "dependencies": {
@@ -54,6 +55,7 @@
     "robotstxt-webpack-plugin": "^7.0.0",
     "sass": "^1.35.1",
     "sass-loader": "^10.2.0",
+    "start-server-and-test": "^1.13.0",
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^4.2.3",
     "ts-loader": "^8.3.0",
