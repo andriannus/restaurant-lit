@@ -98,25 +98,16 @@ module.exports = merge(common, {
       ios: true,
       icons: [
         {
-          src: path.resolve(
-            __dirname,
-            "src/app/shared/assets/icons/general-icon.png",
-          ),
+          src: path.resolve(__dirname, "public/icons/general-icon.png"),
           sizes: [64, 120, 144, 152, 192, 384, 512],
         },
         {
-          src: path.resolve(
-            __dirname,
-            "src/app/shared/assets/icons/maskable-icon.png",
-          ),
+          src: path.resolve(__dirname, "public/icons/maskable-icon.png"),
           purpose: "maskable",
           sizes: [64, 120, 144, 152, 192, 384, 512],
         },
         {
-          src: path.resolve(
-            __dirname,
-            "src/app/shared/assets/icons/apple-icon.png",
-          ),
+          src: path.resolve(__dirname, "public/icons/apple-icon.png"),
           size: "192x192",
           ios: true,
         },

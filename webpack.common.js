@@ -1,4 +1,5 @@
 const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
 const path = require("path");
@@ -68,6 +69,14 @@ module.exports = {
       filename: "index.html",
       scriptLoading: "defer",
       inject: "body",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "public/images"),
+          to: path.resolve(__dirname, "dist/images"),
+        },
+      ],
     }),
     new ImageminWebpWebpackPlugin({
       config: [
