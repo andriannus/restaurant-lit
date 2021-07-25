@@ -3,8 +3,6 @@ import { customElement } from "lit/decorators.js";
 
 import { heroStyles } from "./hero.style";
 
-import HeroImage from "@/app/shared/assets/images/hero-image.jpg";
-
 @customElement("x-hero")
 export default class HeroComponent extends LitElement {
   static get styles(): CSSResultGroup {
@@ -14,10 +12,29 @@ export default class HeroComponent extends LitElement {
   render(): TemplateResult {
     return html`
       <picture class="Hero">
-        <source type="image/webp" srcset="hero-image.webp" />
-        <source type="image/jpeg" srcset="hero-image.jpg" />
+        <source
+          media="(max-width: 600px)"
+          type="image/webp"
+          srcset="./images/hero-image-small.webp"
+        />
 
-        <img src=${HeroImage} alt="Hero Image" loading="lazy" />
+        <source
+          media="(max-width: 600px)"
+          type="image/jpeg"
+          srcset="./images/hero-image-small.jpeg"
+        />
+
+        <source
+          media="(min-width: 601px)"
+          type="image/webp"
+          srcset="./images/hero-image-large.webp"
+        />
+
+        <img
+          src="./images/hero-image-large.jpeg"
+          alt="Hero Image"
+          loading="lazy"
+        />
       </picture>
     `;
   }
