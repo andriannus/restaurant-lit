@@ -48,10 +48,10 @@ module.exports = merge(common, {
       minChunks: 1,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
-      automaticNameDelimiter: "~",
+      automaticNameDelimiter: ".",
       enforceSizeThreshold: 50000,
       cacheGroups: {
-        defaultVendors: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
         },
@@ -64,7 +64,9 @@ module.exports = merge(common, {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      dry: true,
+    }),
     new BundleAnalyzerPlugin({ analyzerMode: "static" }),
     new CompressionPlugin({
       filename: "[path][base].br",
