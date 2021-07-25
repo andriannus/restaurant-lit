@@ -5,6 +5,7 @@ module.exports = {
     es2021: true,
     mocha: true,
     node: true,
+    workbox: true,
   },
   extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   plugins: ["@typescript-eslint"],
