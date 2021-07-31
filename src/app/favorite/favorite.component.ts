@@ -62,7 +62,7 @@ export default class FavoritePageComponent extends LitElement {
     this.isError = false;
 
     try {
-      const restaurants = (await this.favoriteService.getAll()) as Restaurant[];
+      const restaurants = await this.favoriteService.getAll();
       this.restaurants = restaurants;
     } catch {
       this.isError = true;
