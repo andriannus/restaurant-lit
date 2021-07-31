@@ -39,7 +39,7 @@ describe("Favorite Button Component", () => {
       expect(mockButton).to.be.ok;
     });
 
-    it("should not show the unfavorite button when the restaurant has not been favorited before", async () => {
+    it("should not show the unfavorite button when the restaurant has not been favorited before", () => {
       const mockSelector = '[aria-label="Unfavorite this restaurant"]';
       const mockButton = component.shadowRoot!.querySelector(mockSelector)!;
 
