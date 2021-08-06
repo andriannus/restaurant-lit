@@ -5,9 +5,9 @@
     "We The Food",
     "Food"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "author": "Andre Simamora <andriansimamora@gmail.com>",
-  "main": "index.js",
+  "main": "main.ts",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "cy:open": "cypress open",
